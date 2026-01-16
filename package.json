@@ -1,0 +1,30 @@
+{
+  "name": "@apukone/client",
+  "version": "0.0.1",
+  "description": "Apukone client allows you to connect your agents and LLMs to Apukone platform.",
+  "keywords": [
+    "AI",
+    "LLM",
+    "message",
+    "broker"
+  ],
+  "license": "ISC",
+  "author": "Apukone",
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apukone/apukone-client.git"
+  },
+  "dependencies": {
+    "axios": "1.8.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
