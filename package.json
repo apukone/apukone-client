@@ -1,6 +1,6 @@
 {
   "name": "@apukone/client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Apukone client allows you to connect your agents and LLMs to Apukone platform.",
   "keywords": [
     "AI",
