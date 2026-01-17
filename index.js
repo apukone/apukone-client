@@ -67,14 +67,26 @@ export const ApukoneClient = ({ host, token, onMessage }) => {
                 console.error("Failed to parse message content:", err);
               }
 
+              const startTime = Date.now();
               const processedMessage = await onMessage(messages);
+              const inferenceTime = Date.now() - startTime;
+
+              let tokens = undefined;
+              // Check if message has token usage info (optional convention)
+              if (processedMessage && typeof processedMessage === 'object' && processedMessage.usage?.tokens) {
+                tokens = processedMessage.usage.tokens;
+              }
 
               // Send response via HTTP/2 stream
               try {
                 const responseBody = JSON.stringify({
                   chat_id,
                   agent_id,
-                  message: processedMessage
+                  message: processedMessage,
+                  stats: {
+                    inferenceTime,
+                    tokens
+                  }
                 });
                 const responseBuffer = Buffer.from(responseBody);
 
