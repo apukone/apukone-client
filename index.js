@@ -72,9 +72,13 @@ export const ApukoneClient = ({ host, token, onMessage }) => {
               const inferenceTime = Date.now() - startTime;
 
               let tokens = undefined;
-              // Check if message has token usage info (optional convention)
-              if (processedMessage && typeof processedMessage === 'object' && processedMessage.usage?.tokens) {
-                tokens = processedMessage.usage.tokens;
+              // Check if message has token usage info
+              if (processedMessage && typeof processedMessage === 'object') {
+                if (processedMessage.usage?.tokens) {
+                  tokens = processedMessage.usage.tokens;
+                } else if (typeof processedMessage.eval_count === 'number') {
+                  tokens = processedMessage.eval_count;
+                }
               }
 
               // Send response via HTTP/2 stream
